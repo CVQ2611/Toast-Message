@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast Message </title>
+    <link rel="stylesheet" href="./access/toast.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer"/></head>
+<body>
+    <!-- Success -->
+    <div id="toast"></div>
+    
+    <div class="btn">
+        <button class="btn-succes" onclick="showSuccesToast()">Show Succes</button>
+        <button class="btn-error" onclick="showErrorToast()">Show Error</button>
+        <button class="btn-warning" onclick="showWarningToast()">Show Warning</button>
+    </div>
+
+    <script>
+        // show toast
+        function toast({header, title, type, duration, show, ...props}) {
+            const main = document.getElementById('toast');
+            if (main) {
+                // Tao ra thẻ chứa wrapper 
+                const toast = document.createElement('div')
+                const icons = {
+                    succes: 'fa-solid fa-circle-check',
+                    error: 'fa-solid fa-circle-exclamation',
+                    warning: 'fa-solid fa-circle-info',
+                }
+                const icon = icons[type]
+                const delay = (duration/1000).toFixed(2)
+                const showToast = (show/1000).toFixed(2)
+                toast.classList.add('wrapper', `boder-${type}`)
+                // add animation
+                toast.style.animation = `showIn ease-in 0.2s, hiden ease-out ${showToast}s ${delay}s forwards`
+                // thêm các phần tử con vào wrapper
+                toast.innerHTML = `
+                    <div class="label-icon icon-${type}">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="content">
+                        <h1 class="header">${header}</h1>
+                        <p class="title">${title}</p>
+                    </div>
+                    <div class="close-icon">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                `
+                // thêm vào main
+                main.appendChild(toast)
+                // remove khoi dom
+                const autoRemove = setTimeout(()=>{
+                    main.removeChild(toast)
+                },duration + show)
+
+                toast.onclick = (e)=>{
+                    if(e.target.closest('.close-icon')) {
+                        main.removeChild(toast)
+                        clearTimeout(autoRemove)
+                    }
+                }
+            }
+            
+        }
+// call và truyền vào nội dung
+function showSuccesToast() {
+    toast({
+            header: 'Succes',
+            title: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+            type: 'succes',
+            duration: 3000,
+            show: 600,
+        })
+}
+
+function showErrorToast() {
+    toast({
+            header: 'Error',
+            title: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+            type: 'error',
+            duration: 3000,
+            show: 600,
+        })
+}
+
+function showWarningToast() {
+    toast({
+            header: 'Warning',
+            title: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit.',
+            type: 'warning',
+            duration: 3000,
+            show: 600,
+        })
+    
+}
+
+        
+    </script>
+</body>
+</html>

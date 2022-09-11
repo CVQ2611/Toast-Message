@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+}
+
+#toast {
+    position: fixed;
+    top: 20px;
+    right: 10px;
+}
+
+.wrapper {
+    width: 400px;
+    height: 52px;
+    padding: 16px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 1px 1px 6px -2px #d1d1d1;
+    border-left: 2px solid black;
+    margin-bottom: 16px;
+    transition: all linear 0.3s;
+    
+}
+
+@keyframes showIn {
+    from {
+        transform: translateX(105%);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes hiden {
+    to {
+        opacity: 0;
+    }
+}
+
+.label-icon  {
+    font-size: 20px;
+}
+
+.content {
+    padding: 4px 4px ;
+    margin-left: 16px;
+    flex-grow: 1;
+}
+
+.header {
+    font-size: 18px;
+    line-height: 18px;
+    padding: 2px 0;
+}
+
+.title {
+    font-size: 14px;
+    line-height: 14px;
+    opacity: 0.6;
+    padding: 2px 0;
+
+}
+
+.close-icon {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.close-icon:hover {
+    opacity: 1;
+}
+
+/* boder */
+.boder-succes {
+    border-left: 2px solid greenyellow; 
+}
+
+.boder-error {
+    border-left: 2px solid red;
+}
+
+.boder-warning {
+    border-left: 2px solid orange;
+}
+
+/* icon color */
+.icon-succes {
+    color: greenyellow;
+}
+.icon-error {
+    color: red;
+}
+.icon-warning {
+    color: orange;
+}
+
+/* btn */
+.btn {
+    width: 28%;
+    margin: 50px auto;
+    justify-content: center;
+    top: 50%;
+}
+button {
+    color: white;
+    border: none;
+    height: 24px;
+    max-width: 160px;
+    margin: auto;
+    padding: 8px 16px;
+    border-radius: 5px;
+    line-height: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all linear 0.2s;
+}
+
+button:hover {
+    filter: brightness(0.9);
+}
+.btn-succes {
+    background-color: greenyellow;
+}
+ .btn-error {
+    background-color: red;
+
+ }
+ .btn-warning {
+background-color: orange;
+ }
+
